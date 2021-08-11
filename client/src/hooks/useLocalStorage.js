@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // prefix avoids conflict between local storage on different localhost apps
-const PREFIX = "song-request"
+const PREFIX = "song-request-"
 
 // custom hook to store code in local storage
 export default function useLocalStorage(key, initialValue) {
@@ -24,3 +24,5 @@ export default function useLocalStorage(key, initialValue) {
 
     return [value, setValue]
 }
+
+// TODO: set expiration date on code (ex. reset to null after 24hrs)

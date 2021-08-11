@@ -1,14 +1,17 @@
 import React, { useRef } from 'react'
+import { useHistory } from "react-router-dom"
 import { Button, Container, Form } from "react-bootstrap"
 import { Add } from "@material-ui/icons"
 
-function JoinGroup({ onCodeSubmit }) {
+function JoinGroup({ onCodeSubmit, setIsAdmin }) {
     const codeRef = useRef()
+    const history = useHistory()
 
     const handleSubmit = e => {
         e.preventDefault()
         // set group code state to submitted group code
-        onCodeSubmit(codeRef.current.value)
+        const code = codeRef.current.value
+        onCodeSubmit(code)
     }
 
     const createNewCode = () => {
@@ -16,8 +19,7 @@ function JoinGroup({ onCodeSubmit }) {
 
         // set new code
         onCodeSubmit(newCode)
-
-        // TODO: redirect to admin page (where they add in playlist, share code, etc)
+        setIsAdmin(true)
     }
 
     return (
