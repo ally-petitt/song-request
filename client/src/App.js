@@ -2,7 +2,7 @@ import './App.css';
 import Chat from './components/Chat';
 import io from "socket.io-client"
 import React, { useEffect, useState } from "react"
-import {BrowserRouter as Router,Route, Redirect, useHistory} from 'react-router-dom';
+import {BrowserRouter as Router,Route, Redirect, useHistory, Switch} from 'react-router-dom';
 
 
 import JoinGroup from './components/JoinGroup';
@@ -24,35 +24,32 @@ function App() {
     }, []) 
 
     // redirect to correct pages
-    const redirectToDashboard = () => {
-      console.log("redirect")
+    const RedirectToDashboard = () => {
       if (isAdmin) {
-        return ( <Redirect to={`../${code}/admin/dashboard`} />)
+        return ( <Redirect to={`/${code}/admin/dashboard`} />)
       } else {
-        return ( <Redirect to={`../${code}/member/dashboard`} />)
+        return ( <Redirect  to={`/${code}/member/dashboard`} />) 
       }
     }
-
-    console.log(code)
 
   return (
     <Router >
       <div className="App">
-        {code ? redirectToDashboard() : <Redirect to="/join/group" />}
+        {code ? <RedirectToDashboard /> : <Redirect to="/join/group" />}
 
           {/* routes */}
-          {/* redirect to join page if url is invalid */}
-          <Route render={() => <Redirect to={{pathname: "/join/group"}} />} />
-          <Route path="/join/group">
-            <JoinGroup onCodeSubmit={setCode} setIsAdmin={setIsAdmin} />
-          </Route>
-          <Route path="/:code/member/dashboard" component={MemberDashboard} />
-          <Route path="/:code/admin/dashboard" component={AdminDashboard} />
+          <Switch>
+            <Route path="/join/group">
+              <JoinGroup onCodeSubmit={setCode} setIsAdmin={setIsAdmin} />
+            </Route>
+            <Route path="/:code/member/dashboard" component={MemberDashboard} />
+            <Route path="/:code/admin/dashboard" component={AdminDashboard} />
+          </Switch>
       </div>
     </Router>
   );
 }
 
-// TODO: add routing
+// TODO: make option for user to leave class and remove code from local storage
 
 export default App;

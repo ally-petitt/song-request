@@ -5,7 +5,6 @@ import { Add } from "@material-ui/icons"
 
 function JoinGroup({ onCodeSubmit, setIsAdmin }) {
     const codeRef = useRef()
-    const history = useHistory()
 
     const handleSubmit = e => {
         e.preventDefault()
