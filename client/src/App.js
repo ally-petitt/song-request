@@ -1,5 +1,4 @@
 import './App.css';
-import Chat from './components/Chat';
 import io from "socket.io-client"
 import React, { useEffect, useState } from "react"
 import {BrowserRouter as Router,Route, Redirect, useHistory, Switch} from 'react-router-dom';
@@ -50,6 +49,6 @@ function App() {
   );
 }
 
-// TODO: make option for user to leave class and remove code from local storage
+// TODO: make option for user to leave group and remove code from local storage
 
 export default App;

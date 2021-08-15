@@ -1,0 +1,20 @@
+.chat-modal {
+    height: 100vh; 
+    top: 0;
+    left: 0;
+    width: 250px;
+    border-right: 1px solid white
+}
+
+.slide-right {
+    animation: slideRight ease-in-out .3s forwards;
+}
+
+@keyframes slideRight {
+    from {
+        left: -250px
+    }
+    to {
+        left: 0
+    }
+}
